@@ -4,5 +4,8 @@ class ProductModel{
   String price;
 
   ProductModel({this.image,this.name,this.price});
+
+  get categoryName => name;
+
 }
 

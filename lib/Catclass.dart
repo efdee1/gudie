@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'Class/catclass.dart';
@@ -25,6 +26,7 @@ class _CategoryWebState extends State<CategoryWeb> {
   Widget build(BuildContext context) {
     final _width = MediaQuery.of(context).size.width;
     final _height = MediaQuery.of(context).size.height;
+    var index;
     return Column(
       children: [
         Container(
@@ -46,28 +48,49 @@ class _CategoryWebState extends State<CategoryWeb> {
                   ),
             ),
         ),
+        // Card(
+        //   child: Hero(tag:category,
+        //     child: Material(
+        //       child: InkWell(onTap: (){},
+        //         child: GridTile(
+        //           footer: Container(
+        //             color: Colors.white,
+        //             child: ListTile(
+        //               leading: Text(category[index].name),
+        //               title: Text(category[index].price),
+        //             ),
+        //           ),
+        //           child: Image.asset(
+        //             category[index].image,
+        //             fit: BoxFit.cover,
+        //           ),
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
 
-        Container(
-          //width: _width,
-          height: _height,
-          child:GridView.builder(
-            itemCount: category.length,
-            shrinkWrap: true,
-           // physics:ClampingScrollPhysics() ,
-            itemBuilder: (context, index){
-              return ProductTile(
-                image: category[index].image,
-                name: category[index].name,
-                price:category[index].price,
-
-              );
-            },
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:5,
-                childAspectRatio: 1.2,
-                crossAxisSpacing: 1,
-                mainAxisSpacing: 1),
-          ),
-        ),
+        // Container(
+        //   //width: _width,
+        //   height: _height,
+        //   child:GridView.builder(
+        //     itemCount: category.length,
+        //     shrinkWrap: true,
+        //    // physics:ClampingScrollPhysics() ,
+        //     itemBuilder: (context, index){
+        //       return ProductTile(
+        //         image: category[index].image,
+        //         name: category[index].name,
+        //         price:category[index].price,
+        //
+        //       );
+        //     },
+        //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:5,
+        //         childAspectRatio: 1.16,
+        //         crossAxisSpacing: 1,
+        //         mainAxisSpacing: 1),
+        //   ),
+        // ),
       ],
     );
   }
@@ -110,31 +133,38 @@ class ProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
 
-      child:Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: Image.network(image),
+      child:SingleChildScrollView(
+
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: Image.network(image),
+              ),
             ),
-          ),
-          SizedBox(height: 8,),
-          Text(name,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Colors.black87,
+            SizedBox(height: 8,),
+            Text(name,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Colors.black87,
+              ),
             ),
-          ),
-          SizedBox(height: 8,),
-          Text(price,
-            style: TextStyle(
-              color: Colors.black54,
+            SizedBox(height: 8,),
+            Text(price,
+              style: TextStyle(
+                color: Colors.black54,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
+// widget with scroll view (singlechild)
+//coloum
+//listView.builder
+// listview.builder

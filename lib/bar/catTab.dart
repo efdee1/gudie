@@ -6,7 +6,6 @@ import 'package:hoc/Class/productcls.dart';
 import 'package:hoc/DifferntCate/Catone.dart';
 
 class CategoryTab extends StatefulWidget {
-  final ScrollController controller = ScrollController();
   @override
   _CategoryTabState createState() => _CategoryTabState();
 
@@ -17,6 +16,8 @@ class _CategoryTabState extends State<CategoryTab> {
   List <CategoryModel> categories = new List<CategoryModel>();
   // ignore: deprecated_member_use
   List <ProductModel> category = new List<ProductModel>();
+
+  get index => 0;
   @override
   void initState() {
     // TODO: implement initState
@@ -26,7 +27,6 @@ class _CategoryTabState extends State<CategoryTab> {
   }
   @override
   Widget build(BuildContext context) {
-    //final ScrollController controller = ScrollController();
      final _height = MediaQuery.of(context).size.height;
     return Column(
       children: [
@@ -49,22 +49,25 @@ class _CategoryTabState extends State<CategoryTab> {
            ),
          ),
 
-        Container(
-           height: _height,
-          child:GridView.builder(
-              itemCount: category.length,
-              shrinkWrap: true,
-              physics:ClampingScrollPhysics() ,
-              itemBuilder: (context, index){
-                return ProductTile(
-                  image: category[index].image,
-                  name: category[index].name,
-                  price:category[index].price,
-                );
-              }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2,
-              childAspectRatio: 1.0,
-              crossAxisSpacing: 1,mainAxisSpacing: 1
-          ),
+        Card(
+
+          child: Hero(tag: category[index].name,
+            child: Material(
+              child: InkWell(onTap: (){},
+                child: GridTile(
+                  footer: Container(
+                    color: Colors.white,
+                    child: ListTile(
+                      leading: Text(category[index].name),
+                      title: Text(category[index].price),
+                    ),
+                  ),
+                  child: Image.asset(category[index].image,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
       ],
